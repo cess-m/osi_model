@@ -1,3 +1,5 @@
+# Entry point of the OSI model simulation. Run this script to test the implementation.
+
 import physical_layer
 import data_link_layer
 import network_layer
