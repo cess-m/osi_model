@@ -1,33 +1,52 @@
-# Entry point of the OSI model simulation. Run this script to test the implementation.
-
-import physical_layer
-import data_link_layer
-import network_layer
-import transport_layer
-import session_layer
-import presentation_layer
-import application_layer
-
-# Change message here
-message = "Hello, Princess' Network!"
-print("Original Message:", message)
-
-# Sending through OSI layers (Top to Bottom)
-data = application_layer.send(message)
-data = presentation_layer.send(data)
-data = session_layer.send(data)
-data = transport_layer.send(data)
-data = network_layer.send(data)
-data = data_link_layer.send(data)
-data = physical_layer.send(data)
-
-# Receiving through OSI layers (Bottom to Top)
-data = physical_layer.receive(data)
-data = data_link_layer.receive(data)
-data = network_layer.receive(data)
-data = transport_layer.receive(data)
-data = session_layer.receive(data)
-data = presentation_layer.receive(data)
-data = application_layer.receive(data)
-
-print("Received Message:", data)
+from physical_layer import PhysicalLayer
+from data_link_layer import DataLinkLayer
+from network_layer import NetworkLayer
+from transport_layer import TransportLayer
+from session_layer import SessionLayer
+from presentation_layer import PresentationLayer
+from application_layer import ApplicationLayer
+# Initialize Layers
+phys_layer = PhysicalLayer()
+datalink_layer = DataLinkLayer()
+net_layer = NetworkLayer()
+trans_layer = TransportLayer()
+sess_layer = SessionLayer()
+pres_layer = PresentationLayer()
+app_layer = ApplicationLayer()
+# Prompt user for message input
+data = input("Enter the message to send: ")
+print(f"\nOriginal Message:\n{data}\n\n")
+# Sending Process (Top to Bottom)
+print("=== SENDING PROCESS ===\n")
+data = app_layer.send(data)
+print(f"Application Layer (send):\n{data}\n\n")
+data = pres_layer.send(data)
+print(f"Presentation Layer (send):\n{data}\n\n")
+data = sess_layer.send(data)
+print(f"Session Layer (send):\n{data}\n\n")
+data = trans_layer.send(data)
+print(f"Transport Layer (send):\n{data}\n\n")
+data = net_layer.send(data)
+print(f"Network Layer (send):\n{data}\n\n")
+data = datalink_layer.send(data)
+print(f"Data Link Layer (send):\n{data}\n\n")
+data = phys_layer.send(data)
+print(f"Physical Layer (send):\n{data}\n\n")
+print("Data Sent Successfully!\n\n")
+# Receiving Process (Bottom to Top)
+print("=== RECEIVING PROCESS ===\n")
+data = phys_layer.receive(data)
+print(f"Physical Layer (receive):\n{data}\n\n")
+data = datalink_layer.receive(data)
+print(f"Data Link Layer (receive):\n{data}\n\n")
+data = net_layer.receive(data)
+print(f"Network Layer (receive):\n{data}\n\n")
+data = trans_layer.receive(data)
+print(f"Transport Layer (receive):\n{data}\n\n")
+data = sess_layer.receive(data)
+print(f"Session Layer (receive):\n{data}\n\n")
+data = pres_layer.receive(data)
+print(f"Presentation Layer (receive):\n{data}\n\n")
+data = app_layer.receive(data)
+print(f"Application Layer (receive):\n{data}\n\n")
+print("Data Received Successfully!\n")
